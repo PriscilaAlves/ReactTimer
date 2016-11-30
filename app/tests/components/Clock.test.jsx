@@ -38,5 +38,13 @@ describe("Clock", () => {
             var actual = clock.formatSeconds(seconds);
             expect(actual).toBe(expected);
         });
+
+        it("should format sec/min to zero when totalSeconds is not given", () => {
+            var clock = TestUtils.renderIntoDocument(<Clock totalSeconds={0}/>)
+            var $el = $(ReactDOM.findDOMNode(clock));
+            var actualText = $el.find(".clock-text").text();
+
+            expect(actualText).toBe("00:00");
+        })
     });
 });
